@@ -23,14 +23,14 @@ try:
     
     def demo_quick_comparison():
         """Show a quick comparison of both models."""
-        print("🔍 QUICK MODEL COMPARISON")
+        print(" QUICK MODEL COMPARISON")
         print("=" * 60)
         compare_models()
         print("\n")
     
     def demo_basic_model_details():
         """Show detailed info for basic model."""
-        print("📊 BASIC AUTOENCODER - DETAILED ANALYSIS")
+        print(" BASIC AUTOENCODER - DETAILED ANALYSIS")
         print("=" * 60)
         print_architecture_map("basic")
         print("\n")
@@ -39,7 +39,7 @@ try:
     
     def demo_deep_model_details():
         """Show detailed info for deep model."""
-        print("🏗️ DEEP AUTOENCODER - DETAILED ANALYSIS")
+        print(" DEEP AUTOENCODER - DETAILED ANALYSIS")
         print("=" * 60)
         print_architecture_map("deep")
         print("\n")
@@ -48,7 +48,7 @@ try:
     
     def demo_data_flow():
         """Show data flow for both models."""
-        print("🔄 DATA FLOW VISUALIZATION")
+        print(" DATA FLOW VISUALIZATION")
         print("=" * 60)
         print_data_flow_map("basic")
         print("\n")
@@ -57,7 +57,7 @@ try:
     
     def demo_memory_analysis():
         """Show memory analysis for both models."""
-        print("💾 MEMORY USAGE ANALYSIS")
+        print(" MEMORY USAGE ANALYSIS")
         print("=" * 60)
         print("Basic Autoencoder Memory Usage:")
         print("-" * 40)
@@ -70,7 +70,7 @@ try:
     
     def main():
         """Run the complete demo."""
-        print("🎯 HISTOPATHOLOGY AUTOENCODER VISUALIZATION DEMO")
+        print(" HISTOPATHOLOGY AUTOENCODER VISUALIZATION DEMO")
         print("=" * 70)
         print("This demo showcases the key visualization features for both autoencoder models.")
         print("=" * 70)
@@ -91,7 +91,7 @@ try:
         
         demo_memory_analysis()
         
-        print("✅ DEMO COMPLETE!")
+        print(" DEMO COMPLETE!")
         print("=" * 70)
         print("""
         Summary of what you've seen:
@@ -113,7 +113,7 @@ try:
         """)
 
 except ImportError as e:
-    print(f"❌ Could not import required modules: {e}")
+    print(f" Could not import required modules: {e}")
     print("Please ensure you have installed the requirements:")
     print("pip install -r requirements.txt")
     print()

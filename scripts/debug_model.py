@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from models import HistoAutoencoder
+from src.slide_autoencoder.models import HistoAutoencoder
 
 def debug_autoencoder_dimensions():
     """Debug the dimensions through the autoencoder to identify the mismatch"""

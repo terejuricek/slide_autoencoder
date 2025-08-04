@@ -81,7 +81,7 @@ gdctools download --cases TCGA-BRCA --data-type "Slide Image"
 - Many offer research datasets with proper permissions
 - Contact institutions directly for access
 
-## 🛠 Easy Download Scripts
+## Easy Download Scripts
 
 Here are some helper scripts to get you started:
 

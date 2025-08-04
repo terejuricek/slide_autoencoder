@@ -164,7 +164,7 @@ def analyze_dataset(data_dir):
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.tiff', '.tif')):
                 image_files.append(os.path.join(root, file))
     
-    print(f"📊 Dataset Analysis")
+    print(f"Dataset Analysis")
     print(f"Total images found: {len(image_files)}")
     
     # Analyze image properties
@@ -183,22 +183,22 @@ def analyze_dataset(data_dir):
     # Print statistics
     if sizes:
         widths, heights = zip(*sizes)
-        print(f"\n📏 Image Dimensions:")
+        print(f"\nImage Dimensions:")
         print(f"Width range: {min(widths)} - {max(widths)} pixels")
         print(f"Height range: {min(heights)} - {max(heights)} pixels")
         print(f"Average size: {np.mean(widths):.0f} × {np.mean(heights):.0f}")
     
-    print(f"\n📁 File Formats:")
+    print(f"\nFile Formats:")
     for fmt, count in formats.items():
         print(f"{fmt}: {count} files")
     
     # Check minimum requirements
-    print(f"\n✅ Quality Check:")
+    print(f"\nQuality Check:")
     small_images = sum(1 for w, h in sizes if w < 256 or h < 256)
     if small_images > 0:
-        print(f"⚠️  {small_images} images are smaller than 256×256")
+        print(f" {small_images} images are smaller than 256×256")
     else:
-        print("✅ All sampled images meet minimum size requirements")
+        print("All sampled images meet minimum size requirements")
 
 if __name__ == "__main__":
     analyze_dataset("data")

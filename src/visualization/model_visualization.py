@@ -7,7 +7,7 @@ the architecture, data flow, and parameters of both autoencoder models.
 
 import torch
 import torch.nn as nn
-from models import HistoAutoencoder, DeepHistoAutoencoder
+from src.slide_autoencoder.models import HistoAutoencoder, DeepHistoAutoencoder
 import numpy as np
 from collections import OrderedDict
 

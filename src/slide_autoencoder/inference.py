@@ -7,8 +7,8 @@ import cv2
 import os
 from typing import Tuple, Optional
 
-from models import HistoAutoencoder, DeepHistoAutoencoder
-from data_utils import denormalize_tensor
+from .models import HistoAutoencoder, DeepHistoAutoencoder
+from .data_utils import denormalize_tensor
 import torchvision.transforms as transforms
 
 

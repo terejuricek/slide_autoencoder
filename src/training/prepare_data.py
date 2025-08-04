@@ -53,7 +53,7 @@ def prepare_histology_data(source_dir, output_dir, train_split=0.8, copy_files=T
                 if img.size[0] >= 256 and img.size[1] >= 256:
                     valid_files.append(img_path)
                 else:
-                    print(f"⚠️  Skipping {img_path.name}: too small ({img.size[0]}x{img.size[1]})")
+                    print(f"  Skipping {img_path.name}: too small ({img.size[0]}x{img.size[1]})")
         except Exception as e:
             print(f"Error reading {img_path.name}: {e}")
     

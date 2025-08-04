@@ -1,14 +1,14 @@
 # Training Steps Summary for Real Histopathology Data
 
-## ✅ Complete Training Workflow
+## Complete Training Workflow
 
-### 📋 **Prerequisites**
+### **Prerequisites**
 - Python 3.8+ with PyTorch installed
 - GPU recommended (4GB+ VRAM)
 - Histopathology images (PNG/TIFF preferred)
 - At least 100+ images for testing, 500+ for good results
 
-### 🎯 **Image Parameter Requirements**
+### **Image Parameter Requirements**
 
 | **Parameter** | **Minimum** | **Recommended** | **Notes** |
 |---------------|-------------|-----------------|-----------|
@@ -20,7 +20,7 @@
 | **Staining** | Any histology stain | H&E, IHC standard | Consistent staining preferred |
 | **Quality** | Well-focused | High resolution | Avoid blurry/artifacts |
 
-## 🚀 **Training Steps (Simple Method)**
+## **Training Steps (Simple Method)**
 
 ### **Step 1: Install and Setup**
 ```bash
@@ -67,7 +67,7 @@ python demo_visualization.py
 python train_real_data.py data/train --val_dir data/val
 ```
 
-**🔧 Advanced Training Options**
+**Advanced Training Options**
 ```bash
 # High-quality training with deep model
 python train_real_data.py data/train \
@@ -86,10 +86,10 @@ python train_real_data.py data/train \
 
 ### **Step 5: Monitor Training**
 During training, watch for:
-- ✅ Decreasing training loss
-- ✅ Validation loss following training loss  
-- ⚠️ Validation loss diverging (overfitting)
-- 📊 Training plots saved automatically
+- Decreasing training loss
+- Validation loss following training loss  
+- Validation loss diverging (overfitting)
+- Training plots saved automatically
 
 ### **Step 6: Evaluate Results**
 ```bash
@@ -112,7 +112,7 @@ python inference.py --model training_output/best_model.pth --input noisy_image.p
 python inference.py --model training_output/best_model.pth --input_dir input_images/ --output_dir denoised/
 ```
 
-## ⚙️ **Configuration Guidelines**
+## **Configuration Guidelines**
 
 ### **Hardware-Based Settings**
 
@@ -130,7 +130,7 @@ python inference.py --model training_output/best_model.pth --input_dir input_ima
 | 300-1000 | Basic | 100-200 | 2-8 hours | Good |
 | 1000+ | Deep | 200-500 | 6-24 hours | Excellent |
 
-## 🔧 **Troubleshooting Common Issues**
+## **Troubleshooting Common Issues**
 
 ### **Memory Errors**
 ```bash
@@ -150,7 +150,7 @@ python train_real_data.py data/train --num_epochs 300 --model_type deep
 python train_real_data.py data/train --model_type basic --batch_size 16
 ```
 
-## 📊 **Quality Metrics Interpretation**
+## **Quality Metrics Interpretation**
 
 ### **PSNR (Peak Signal-to-Noise Ratio)**
 - **>30 dB**: Excellent quality
@@ -169,27 +169,27 @@ python train_real_data.py data/train --model_type basic --batch_size 16
 - **20-50%**: Moderate improvement
 - **<20%**: Limited improvement
 
-## 🎯 **Best Practices**
+## **Best Practices**
 
 ### **Data Preparation**
-1. ✅ Use consistent image quality
-2. ✅ Filter out severely damaged images
-3. ✅ Maintain consistent staining protocols
-4. ✅ Balance training/validation sets
+1. Use consistent image quality
+2. Filter out severely damaged images
+3. Maintain consistent staining protocols
+4. Balance training/validation sets
 
 ### **Training Optimization**
-1. ✅ Start with basic model for testing
-2. ✅ Monitor validation loss for overfitting
-3. ✅ Save checkpoints frequently
-4. ✅ Use early stopping if loss plateaus
+1. Start with basic model for testing
+2. Monitor validation loss for overfitting
+3. Save checkpoints frequently
+4. Use early stopping if loss plateaus
 
 ### **Model Selection**
-1. ✅ Basic model for most applications
-2. ✅ Deep model for research/high-quality needs
-3. ✅ Consider computational constraints
-4. ✅ Validate results on separate test set
+1. Basic model for most applications
+2. Deep model for research/high-quality needs
+3. Consider computational constraints
+4. Validate results on separate test set
 
-## 📁 **Output Files Structure**
+## **Output Files Structure**
 
 After training, you'll have:
 ```
@@ -201,7 +201,7 @@ training_output/
 └── sample_reconstructions.png  # Example results
 ```
 
-## 🔄 **Workflow Integration**
+## **Workflow Integration**
 
 ### **For Clinical Use**
 1. Train on institutional data

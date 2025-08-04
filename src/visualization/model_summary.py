@@ -11,12 +11,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
     from model_visualization import count_parameters
-    from models import HistoAutoencoder, DeepHistoAutoencoder
+    from src.slide_autoencoder.models import HistoAutoencoder, DeepHistoAutoencoder
     
     def print_model_summary():
         """Print a concise summary of both models."""
         
-        print("🔬 HISTOPATHOLOGY AUTOENCODER - MODEL SUMMARY")
+        print(" HISTOPATHOLOGY AUTOENCODER - MODEL SUMMARY")
         print("=" * 70)
         
         # Create models
@@ -27,7 +27,7 @@ try:
         deep_params, _ = count_parameters(deep_model)
         
         print()
-        print("📊 MODEL COMPARISON")
+        print(" MODEL COMPARISON")
         print("-" * 50)
         print(f"{'Metric':<25} {'Basic':<15} {'Deep':<15}")
         print("-" * 50)
@@ -41,7 +41,7 @@ try:
         print("*Batch size 8, 256x256 images")
         
         print()
-        print("🎯 RECOMMENDATIONS")
+        print(" RECOMMENDATIONS")
         print("-" * 50)
         print("Choose BASIC Autoencoder if:")
         print("  • Working with 256x256 histology patches")
@@ -71,7 +71,7 @@ try:
         print("   python train.py")
         
         print()
-        print("📈 ARCHITECTURE HIGHLIGHTS")
+        print("ARCHITECTURE HIGHLIGHTS")
         print("-" * 50)
         print("Both models feature:")
         print("  ✓ U-Net architecture with skip connections")
@@ -81,7 +81,7 @@ try:
         print("  ✓ Preserves diagnostic details")
         
         print()
-        print("🔍 TECHNICAL SPECS")
+        print(" TECHNICAL SPECS")
         print("-" * 50)
         print("Input/Output: RGB images (3 channels)")
         print("Patch size: 256x256 (expandable to 512x512)")
@@ -96,7 +96,7 @@ try:
         print("=" * 70)
 
 except ImportError as e:
-    print(f"❌ Could not import required modules: {e}")
+    print(f" Could not import required modules: {e}")
     print("Please ensure all dependencies are installed and models.py exists.")
 
 if __name__ == "__main__":

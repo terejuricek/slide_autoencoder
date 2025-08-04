@@ -18,9 +18,9 @@ import json
 from datetime import datetime
 import argparse
 
-from models import HistoAutoencoder, DeepHistoAutoencoder
-from inference import HistologyDenoiser
-from data_utils import get_data_loaders
+from src.slide_autoencoder.models import HistoAutoencoder, DeepHistoAutoencoder
+from src.slide_autoencoder.inference import HistologyDenoiser
+from src.slide_autoencoder.data_utils import get_data_loaders
 
 
 def calculate_metrics(original, denoised, ground_truth=None):
@@ -127,7 +127,7 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
         model_type: "basic" or "deep"
         device: Device to use for evaluation
     """
-    print("🔬 Autoencoder Model Evaluation")
+    print(" Autoencoder Model Evaluation")
     print("=" * 50)
     
     # Setup device
@@ -152,10 +152,10 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
         test_images.extend(Path(test_dir).glob(f'*{ext}'))
         test_images.extend(Path(test_dir).glob(f'*{ext.upper()}'))
     
-    print(f"📁 Found {len(test_images)} test images")
+    print(f" Found {len(test_images)} test images")
     
     if len(test_images) == 0:
-        print("❌ No test images found!")
+        print(" No test images found!")
         return
     
     # Evaluation storage
@@ -170,7 +170,7 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
     }
     
     # Process each image
-    print(f"🔍 Processing {len(test_images)} images...")
+    print(f" Processing {len(test_images)} images...")
     
     for i, img_path in enumerate(test_images):
         print(f"  Processing {img_path.name} ({i+1}/{len(test_images)})")
@@ -179,7 +179,7 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
             # Load image
             image = cv2.imread(str(img_path))
             if image is None:
-                print(f"    ❌ Could not load {img_path.name}")
+                print(f"     Could not load {img_path.name}")
                 continue
             
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -217,7 +217,7 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
                 )
         
         except Exception as e:
-            print(f"    ❌ Error processing {img_path.name}: {e}")
+            print(f"     Error processing {img_path.name}: {e}")
             continue
     
     # Calculate summary statistics
@@ -234,14 +234,14 @@ def evaluate_model(model_path, test_dir, output_dir, model_type="basic", device=
         with open(results_file, 'w') as f:
             json.dump(results, f, indent=2)
         
-        print(f"\n💾 Results saved to {results_file}")
+        print(f"\n Results saved to {results_file}")
         
         # Create visualizations
         create_evaluation_plots(all_metrics, output_dir)
         
         return results
     else:
-        print("❌ No images could be processed!")
+        print(" No images could be processed!")
         return None
 
 
@@ -307,47 +307,47 @@ def calculate_summary_stats(metrics_list):
 def print_evaluation_summary(summary_stats):
     """Print evaluation summary to console"""
     
-    print("\n📊 Evaluation Summary")
+    print("\n Evaluation Summary")
     print("=" * 50)
     
     # PSNR vs Ground Truth
     if 'psnr_vs_gt_mean' in summary_stats:
-        print(f"🎯 PSNR vs Ground Truth:")
+        print(f" PSNR vs Ground Truth:")
         print(f"   Mean: {summary_stats['psnr_vs_gt_mean']:.2f} ± {summary_stats['psnr_vs_gt_std']:.2f} dB")
         print(f"   Range: {summary_stats['psnr_vs_gt_min']:.2f} - {summary_stats['psnr_vs_gt_max']:.2f} dB")
     
     # MSE Improvement
     if 'mse_improvement_percent_mean' in summary_stats:
-        print(f"\n📈 MSE Improvement:")
+        print(f"\nMSE Improvement:")
         print(f"   Mean: {summary_stats['mse_improvement_percent_mean']:.1f} ± {summary_stats['mse_improvement_percent_std']:.1f}%")
         print(f"   Range: {summary_stats['mse_improvement_percent_min']:.1f} - {summary_stats['mse_improvement_percent_max']:.1f}%")
     
     # SSIM
     if 'ssim_vs_gt_mean' in summary_stats:
-        print(f"\n🔍 SSIM (Structural Similarity):")
+        print(f"\n SSIM (Structural Similarity):")
         print(f"   Mean: {summary_stats['ssim_vs_gt_mean']:.3f} ± {summary_stats['ssim_vs_gt_std']:.3f}")
         print(f"   Range: {summary_stats['ssim_vs_gt_min']:.3f} - {summary_stats['ssim_vs_gt_max']:.3f}")
     
     # Quality assessment
-    print(f"\n💡 Quality Assessment:")
+    print(f"\nQuality Assessment:")
     psnr_mean = summary_stats.get('psnr_vs_gt_mean', 0)
     improvement_mean = summary_stats.get('mse_improvement_percent_mean', 0)
     
     if psnr_mean > 30:
-        print("   ✅ Excellent denoising quality (PSNR > 30 dB)")
+        print("    Excellent denoising quality (PSNR > 30 dB)")
     elif psnr_mean > 25:
-        print("   ✅ Good denoising quality (PSNR > 25 dB)")
+        print("    Good denoising quality (PSNR > 25 dB)")
     elif psnr_mean > 20:
-        print("   ⚠️  Fair denoising quality (PSNR > 20 dB)")
+        print("     Fair denoising quality (PSNR > 20 dB)")
     else:
-        print("   ❌ Poor denoising quality (PSNR < 20 dB)")
+        print("    Poor denoising quality (PSNR < 20 dB)")
     
     if improvement_mean > 50:
-        print("   ✅ Significant noise reduction achieved")
+        print("    Significant noise reduction achieved")
     elif improvement_mean > 20:
-        print("   ✅ Moderate noise reduction achieved")
+        print("    Moderate noise reduction achieved")
     else:
-        print("   ⚠️  Limited noise reduction achieved")
+        print("     Limited noise reduction achieved")
 
 
 def create_evaluation_plots(metrics_list, output_dir):
@@ -404,7 +404,7 @@ def create_evaluation_plots(metrics_list, output_dir):
     plt.savefig(Path(output_dir) / "evaluation_metrics.png", dpi=150, bbox_inches='tight')
     plt.close()
     
-    print(f"📊 Evaluation plots saved to {Path(output_dir) / 'evaluation_metrics.png'}")
+    print(f" Evaluation plots saved to {Path(output_dir) / 'evaluation_metrics.png'}")
 
 
 def main():
@@ -418,11 +418,11 @@ def main():
     args = parser.parse_args()
     
     if not os.path.exists(args.model_path):
-        print(f"❌ Model file '{args.model_path}' not found!")
+        print(f" Model file '{args.model_path}' not found!")
         return
     
     if not os.path.exists(args.test_dir):
-        print(f"❌ Test directory '{args.test_dir}' not found!")
+        print(f" Test directory '{args.test_dir}' not found!")
         return
     
     results = evaluate_model(
@@ -434,15 +434,15 @@ def main():
     )
     
     if results:
-        print(f"\n✅ Evaluation complete! Results saved in '{args.output_dir}'")
+        print(f"\n Evaluation complete! Results saved in '{args.output_dir}'")
     else:
-        print("\n❌ Evaluation failed!")
+        print("\n Evaluation failed!")
 
 
 if __name__ == "__main__":
     # Example usage if run without arguments
     if len(os.sys.argv) == 1:
-        print("🔬 Autoencoder Model Evaluation Tool")
+        print(" Autoencoder Model Evaluation Tool")
         print("=" * 50)
         print("\nUsage:")
         print("  python evaluate_model.py <model_path> <test_dir> [options]")
@@ -450,11 +450,11 @@ if __name__ == "__main__":
         print("  python evaluate_model.py checkpoints/best_model.pth data/val")
         print("  python evaluate_model.py checkpoints/best_model.pth data/test --model_type deep")
         print("\nThe script will:")
-        print("  ✅ Load the trained model")
-        print("  ✅ Process all images in test directory")
-        print("  ✅ Calculate comprehensive quality metrics")
-        print("  ✅ Generate comparison visualizations")
-        print("  ✅ Create evaluation summary and plots")
-        print("  ✅ Save detailed results as JSON")
+        print("   Load the trained model")
+        print("   Process all images in test directory")
+        print("   Calculate comprehensive quality metrics")
+        print("   Generate comparison visualizations")
+        print("   Create evaluation summary and plots")
+        print("   Save detailed results as JSON")
     else:
         main()

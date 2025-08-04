@@ -16,7 +16,7 @@ from pathlib import Path
 import json
 from datetime import datetime
 
-from models import HistoAutoencoder, DeepHistoAutoencoder
+from src.slide_autoencoder.models import HistoAutoencoder, DeepHistoAutoencoder
 from data_utils import get_data_loaders
 from train import HistologyTrainer
 

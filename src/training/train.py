@@ -10,8 +10,8 @@ import time
 from tqdm import tqdm
 import json
 
-from models import HistoAutoencoder, DeepHistoAutoencoder
-from data_utils import get_data_loaders, denormalize_tensor
+from src.slide_autoencoder.models import HistoAutoencoder, DeepHistoAutoencoder
+from src.slide_autoencoder.data_utils import get_data_loaders, denormalize_tensor
 
 
 class HistologyTrainer:
